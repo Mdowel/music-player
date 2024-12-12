@@ -27,27 +27,27 @@
         
         <!-- progress bar -->
         <progress class="w-full" id="progress" max="100" value="80"></progress>
-        <div class="flex justify-between ">
+        <div class="w-full flex justify-between">
             <small>0:00</small>
             <small>3:45</small>
         </div>
 
         <section class="controls flex justify-between gap-2 text-gray-500 my-6">
-            <button>
+            <button class="hover:text-gray-900">
                 <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-repeat"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 12v-3a3 3 0 0 1 3 -3h13m-3 -3l3 3l-3 3" /><path d="M20 12v3a3 3 0 0 1 -3 3h-13m3 3l-3 -3l3 -3" /></svg>
             </button>
-            <button>
+            <button class="hover:text-gray-900">
                 <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-player-skip-back"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.496 4.136l-12 7a1 1 0 0 0 0 1.728l12 7a1 1 0 0 0 1.504 -.864v-14a1 1 0 0 0 -1.504 -.864z" /><path d="M4 4a1 1 0 0 1 .993 .883l.007 .117v14a1 1 0 0 1 -1.993 .117l-.007 -.117v-14a1 1 0 0 1 1 -1z" /></svg>
             </button>
-            <button class="border-2 rounded-full w-12 h-12 flex items-center justify-center border-gray-500">
+            <button class="border-2 rounded-full w-12 h-12 flex items-center justify-center border-gray-500 hover:text-gray-900">
                 <svg  xmlns="http://www.w3.org/2000/svg"  width="36"  height="36"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-player-play"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z" /></svg>        
 
                 <!-- <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-player-pause"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 4h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2z" /><path d="M17 4h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2z" /></svg> -->
             </button>
-            <button>
+            <button class="hover:text-gray-900">
                 <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-player-skip-forward"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5v14a1 1 0 0 0 1.504 .864l12 -7a1 1 0 0 0 0 -1.728l-12 -7a1 1 0 0 0 -1.504 .864z" /><path d="M20 4a1 1 0 0 1 .993 .883l.007 .117v14a1 1 0 0 1 -1.993 .117l-.007 -.117v-14a1 1 0 0 1 1 -1z" /></svg>
             </button>
-            <button>
+            <button class="hover:text-gray-900">
                 <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrows-shuffle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 4l3 3l-3 3" /><path d="M18 20l3 -3l-3 -3" /><path d="M3 7h3a5 5 0 0 1 5 5a5 5 0 0 0 5 5h5" /><path d="M21 7h-5a4.978 4.978 0 0 0 -3 1m-4 8a4.984 4.984 0 0 1 -3 1h-3" /></svg>
             </button>
         </section>
@@ -68,6 +68,33 @@
                 controls>
             </audio>
         </div> -->
+        <!-- track list -->
+        <div class="w-11/12">
+            <button class="w-full py-2 flex justify-between hover:font-bold">
+                Adding the Sun
+                <span>2:56</span>
+            </button>
+            <button class="w-full py-2 flex justify-between hover:font-bold">
+                Dream Catcher
+                <span>6:17</span>
+            </button>
+            <button class="w-full py-2 flex justify-between hover:font-bold">
+                Glitter Blast
+                <span>2:57</span>
+            </button>
+            <button class="w-full py-2 flex justify-between hover:font-bold">
+                Magistar
+                <span>3:12</span>
+            </button>
+            <button class="w-full py-2 flex justify-between hover:font-bold">
+                Midnight Tale
+                <span>2:41</span>
+            </button>
+            <button class="w-full py-2 flex justify-between hover:font-bold">
+                The Ice Giants
+                <span>0:44</span>
+            </button>
+        </div>
     </section>
 </body>
 </html>
