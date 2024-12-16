@@ -53,8 +53,11 @@ const prevBtn = document.querySelector('#prev-btn')
 const playToggleBtn = document.querySelector('#play-toggle-btn')
 const nextBtn = document.querySelector('#next-btn')
 const shuffleBtn = document.querySelector('#shuffle-btn')
+// const playIcon = document.querySelector('.play-icon')
+// const pauseIcon = document.querySelector('.pause-icon')
 const playlistEl = document.querySelector('#playlist')
 
+let activeSong = undefined
 
 songs.forEach((song, index) => {
     const songBtn = document.createElement('button')
@@ -74,12 +77,24 @@ songs.forEach((song, index) => {
         playlistEl.appendChild(songEl)
 
         if(index === 0){
+            activeSong = songEl
             currentTimeEl.innerText = `0:00` 
             setSongDetails(song)
         }
     })
   
 });
+
+playToggleBtn.addEventListener('click', () => {
+    playToggleBtn.classList.toggle('play')
+
+    if (activeSong.paused){
+        activeSong.play()
+        
+    } else {
+        activeSong.pause()
+    }
+})
 
 function setSongDetails(song) {
     titleEl.innerText = song.title
