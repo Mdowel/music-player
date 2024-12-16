@@ -97,27 +97,32 @@ prevBtn.addEventListener('click', () => {
 const originalOrder = [...songs]
 
 shuffleBtn.addEventListener('click', () => {
+    stopPlayingSong()
+
+    const shuffledSongs = [...songs]
     if (!shuffleBtn.classList.contains('active')) {
-        for (let i = songs.length - 1; i > 0; i--) {
+        for (let i = shuffledSongs.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1))
-            ;[songs[i], songs[j]] = [songs[j], songs[i]]
+            ;[shuffledSongs[i], shuffledSongs[j]] = [shuffledSongs[j], shuffledSongs[i]]
         }  
+        songs.length = 0
+        songs.push(...shuffledSongs)
 
         shuffleBtn.classList.add('active','text-blue-700' )
-        getPlaylist()
         console.log('shuffle', songs)
 
     } else {
         songs.length = 0
         songs.push(...originalOrder)
         shuffleBtn.classList.remove('active', 'text-blue-700')
-        getPlaylist()
     }
+    getPlaylist()
 })
 
 
 function getPlaylist() {
-    playlistEl.innerText = ''
+    playlistEl.innerHTML = ''
+    songsEls.length = 0
 
     songs.forEach((song, index) => {
         const songBtn = document.createElement('button')
