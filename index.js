@@ -67,9 +67,10 @@ songs.forEach((song, index) => {
     songsEls.push(songEl)
 
     songBtn.className = 'w-full py-2 flex justify-between hover:font-bold'
-
-
     songEl.src = song.url
+    // add each song to playlist
+    playlistEl.appendChild(songBtn)
+    playlistEl.appendChild(songEl)
     
     songEl.addEventListener('loadedmetadata', () => {
         const { duration } = songEl
@@ -77,10 +78,7 @@ songs.forEach((song, index) => {
 
         song.time = time
         
-        // add each song to playlist
         songBtn.innerHTML = `${song.title} <span>${time}</span>`
-        playlistEl.appendChild(songBtn)
-        playlistEl.appendChild(songEl)
 
         // set default song
         if(index === 0){
@@ -116,13 +114,7 @@ songs.forEach((song, index) => {
 });
 
 playToggleBtn.addEventListener('click', () => {   
-    if (songsEls[activeSongIndex].paused){
-        songsEls[activeSongIndex].play()
-        playToggleBtn.classList.add('play')
-    } else {
-        songsEls[activeSongIndex].pause()
-        playToggleBtn.classList.remove('play')
-    }
+    togglePlayBtn()
 })
 
 nextBtn.addEventListener('click', () => {
@@ -135,6 +127,8 @@ nextBtn.addEventListener('click', () => {
     }
     setSongDetails(songs[activeSongIndex])
     playlistEl.querySelectorAll('button')[activeSongIndex].classList.add('font-bold')
+    togglePlayBtn()
+    songsEls[activeSongIndex].play()
 })
 
 prevBtn.addEventListener('click', () => {
@@ -147,7 +141,8 @@ prevBtn.addEventListener('click', () => {
     }
     setSongDetails(songs[activeSongIndex])
     playlistEl.querySelectorAll('button')[activeSongIndex].classList.add('font-bold')
-
+    togglePlayBtn()
+    songsEls[activeSongIndex].play()
 })
 
 function updateProgress(time) {
@@ -172,4 +167,14 @@ function getReadableTime(duration) {
 function stopPlayingSong() {
         songsEls[activeSongIndex].pause()
         playToggleBtn.classList.remove('play')
+}
+
+function togglePlayBtn() {
+    if (songsEls[activeSongIndex].paused){
+        songsEls[activeSongIndex].play()
+        playToggleBtn.classList.add('play')
+    } else {
+        songsEls[activeSongIndex].pause()
+        playToggleBtn.classList.remove('play')
+    }
 }
