@@ -60,58 +60,7 @@ const playlistEl = document.querySelector('#playlist')
 const songsEls = []
 let activeSongIndex = undefined
 
-songs.forEach((song, index) => {
-    const songBtn = document.createElement('button')
-    const songEl = document.createElement('audio')
-    
-    songsEls.push(songEl)
-
-    songBtn.className = 'w-full py-2 flex justify-between hover:font-bold'
-    songEl.src = song.url
-    // add each song to playlist
-    playlistEl.appendChild(songBtn)
-    playlistEl.appendChild(songEl)
-    
-    songEl.addEventListener('loadedmetadata', () => {
-        const { duration } = songEl
-        const time = getReadableTime(duration)
-
-        song.time = time
-        
-        songBtn.innerHTML = `${song.title} <span>${time}</span>`
-
-        // set default song
-        if(index === 0){
-            activeSongIndex = index
-            setSongDetails(song)
-            songBtn.classList.add('font-bold')
-        }
-    })
-
-    // update progress bar
-    songEl.addEventListener('timeupdate', () => {
-        const { currentTime } = songEl 
-        updateProgress(currentTime)
-    })
-
-    // change song on song title click
-    songBtn.addEventListener('click', () => {
-        document.querySelector('#playlist button.font-bold').classList.remove('font-bold')
-        
-        songBtn.classList.add('font-bold')
-        stopPlayingSong()
-
-        activeSongIndex = index
-        setSongDetails(song)
-    })
-  
-    // preload images            
-    const hiddenImageEl = document.createElement('img')
-    hiddenImageEl.src = song.thumbnail
-    hiddenImageEl.classList.add('hidden')
-    document.body.appendChild(hiddenImageEl)
-
-});
+getPlaylist()
 
 playToggleBtn.addEventListener('click', () => {   
     togglePlayBtn()
@@ -144,6 +93,85 @@ prevBtn.addEventListener('click', () => {
     togglePlayBtn()
     songsEls[activeSongIndex].play()
 })
+
+const originalOrder = [...songs]
+
+shuffleBtn.addEventListener('click', () => {
+    if (!shuffleBtn.classList.contains('active')) {
+        for (let i = songs.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1))
+            ;[songs[i], songs[j]] = [songs[j], songs[i]]
+        }  
+
+        shuffleBtn.classList.add('active','text-blue-700' )
+        getPlaylist()
+        console.log('shuffle', songs)
+
+    } else {
+        songs.length = 0
+        songs.push(...originalOrder)
+        shuffleBtn.classList.remove('active', 'text-blue-700')
+        getPlaylist()
+    }
+})
+
+
+function getPlaylist() {
+    playlistEl.innerText = ''
+
+    songs.forEach((song, index) => {
+        const songBtn = document.createElement('button')
+        const songEl = document.createElement('audio')
+        
+        songsEls.push(songEl)
+
+        songBtn.className = 'w-full py-2 flex justify-between hover:font-bold'
+        songEl.src = song.url
+        // add each song to playlist
+        playlistEl.appendChild(songBtn)
+        playlistEl.appendChild(songEl)
+        
+        songEl.addEventListener('loadedmetadata', () => {
+            const { duration } = songEl
+            const time = getReadableTime(duration)
+
+            song.time = time
+            
+            songBtn.innerHTML = `${song.title} <span>${time}</span>`
+
+            // set default song
+            if(index === 0){
+                activeSongIndex = index
+                setSongDetails(song)
+                songBtn.classList.add('font-bold')
+            }
+        })
+
+        // update progress bar
+        songEl.addEventListener('timeupdate', () => {
+            const { currentTime } = songEl 
+            updateProgress(currentTime)
+        })
+
+        // change song on song title click
+        songBtn.addEventListener('click', () => {
+            document.querySelector('#playlist button.font-bold').classList.remove('font-bold')
+            
+            songBtn.classList.add('font-bold')
+            stopPlayingSong()
+
+            activeSongIndex = index
+            setSongDetails(song)
+        })
+  
+        // preload images            
+        const hiddenImageEl = document.createElement('img')
+        hiddenImageEl.src = song.thumbnail
+        hiddenImageEl.classList.add('hidden')
+        document.body.appendChild(hiddenImageEl)
+
+    });
+}
 
 function updateProgress(time) {
     progressEl.value = time / songsEls[activeSongIndex].duration * 100
