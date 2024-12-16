@@ -67,7 +67,8 @@ songs.forEach((song, index) => {
     songsEls.push(songEl)
 
     songBtn.className = 'w-full py-2 flex justify-between hover:font-bold'
-    
+
+
     songEl.src = song.url
     
     songEl.addEventListener('loadedmetadata', () => {
@@ -76,37 +77,41 @@ songs.forEach((song, index) => {
 
         song.time = time
         
+        // add each song to playlist
         songBtn.innerHTML = `${song.title} <span>${time}</span>`
         playlistEl.appendChild(songBtn)
         playlistEl.appendChild(songEl)
 
+        // set default song
         if(index === 0){
             activeSongIndex = index
             setSongDetails(song)
+            songBtn.classList.add('font-bold')
         }
     })
 
+    // update progress bar
     songEl.addEventListener('timeupdate', () => {
         const { currentTime } = songEl 
         updateProgress(currentTime)
     })
 
+    // change song on song title click
     songBtn.addEventListener('click', () => {
-        // stop active song if playing
-        if (!songsEls[activeSongIndex].paused){
-            songsEls[activeSongIndex].pause()
-            playToggleBtn.classList.remove('play')
-        }
+        document.querySelector('#playlist button.font-bold').classList.remove('font-bold')
+        
+        songBtn.classList.add('font-bold')
+        stopPlayingSong()
 
         activeSongIndex = index
         setSongDetails(song)
     })
   
-        // preload images            
-        const hiddenImageEl = document.createElement('img')
-        hiddenImageEl.src = song.thumbnail
-        hiddenImageEl.classList.add('hidden')
-        document.body.appendChild(hiddenImageEl)
+    // preload images            
+    const hiddenImageEl = document.createElement('img')
+    hiddenImageEl.src = song.thumbnail
+    hiddenImageEl.classList.add('hidden')
+    document.body.appendChild(hiddenImageEl)
 
 });
 
@@ -118,6 +123,31 @@ playToggleBtn.addEventListener('click', () => {
         songsEls[activeSongIndex].pause()
         playToggleBtn.classList.remove('play')
     }
+})
+
+nextBtn.addEventListener('click', () => {
+    stopPlayingSong()
+    document.querySelector('#playlist button.font-bold').classList.remove('font-bold')
+
+    activeSongIndex++
+    if(activeSongIndex > songs.length - 1){
+        activeSongIndex = songs.length - 1
+    }
+    setSongDetails(songs[activeSongIndex])
+    playlistEl.querySelectorAll('button')[activeSongIndex].classList.add('font-bold')
+})
+
+prevBtn.addEventListener('click', () => {
+    stopPlayingSong()
+    document.querySelector('#playlist button.font-bold').classList.remove('font-bold')
+    
+    activeSongIndex--
+    if(activeSongIndex < 0){
+        activeSongIndex = 0
+    }
+    setSongDetails(songs[activeSongIndex])
+    playlistEl.querySelectorAll('button')[activeSongIndex].classList.add('font-bold')
+
 })
 
 function updateProgress(time) {
@@ -137,4 +167,9 @@ function setSongDetails(song) {
 
 function getReadableTime(duration) {
     return `${Math.floor(duration / 60)}:${`${Math.floor(duration % 60)}`.padStart(2, '0')}`
+}
+
+function stopPlayingSong() {
+        songsEls[activeSongIndex].pause()
+        playToggleBtn.classList.remove('play')
 }
