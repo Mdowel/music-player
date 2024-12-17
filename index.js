@@ -14,6 +14,13 @@ const songs = [
     },
 
     {
+        title: 'The Ice Giants',
+        artist: 'Kevin MacLeod',
+        thumbnail: 'https://images.unsplash.com/photo-1525396723185-6410140f6f98?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        url: 'https://github.com/Mdowel/music-player-audio-files/raw/refs/heads/main/The%20Ice%20Giants.mp3'
+    },
+
+    {
         title: 'Glitter Blast',
         artist: '',
         thumbnail: 'https://images.unsplash.com/photo-1526722190017-4f91f105e2b2?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -32,13 +39,6 @@ const songs = [
         artist: '',
         thumbnail: 'https://images.unsplash.com/photo-1706713417278-f56e1fd147e4?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         url: 'https://github.com/Mdowel/music-player-audio-files/raw/refs/heads/main/Midnight%20Tale.mp3'
-    },
-
-    {
-        title: 'The Ice Giants',
-        artist: 'Kevin MacLeod',
-        thumbnail: 'https://images.unsplash.com/photo-1525396723185-6410140f6f98?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        url: 'https://github.com/Mdowel/music-player-audio-files/raw/refs/heads/main/The%20Ice%20Giants.mp3'
     }
 ]
 
@@ -108,15 +108,24 @@ shuffleBtn.addEventListener('click', () => {
         songs.length = 0
         songs.push(...shuffledSongs)
 
-        shuffleBtn.classList.add('active','text-blue-700' )
-        console.log('shuffle', songs)
-
+        shuffleBtn.classList.add('active', 'text-blue-700' )
     } else {
         songs.length = 0
         songs.push(...originalOrder)
         shuffleBtn.classList.remove('active', 'text-blue-700')
     }
     getPlaylist()
+})
+
+repeatBtn.addEventListener('click', () => {
+    if (!repeatBtn.classList.contains('active')) {
+        songsEls[activeSongIndex].loop = true
+        songsEls[activeSongIndex].play()
+        repeatBtn.classList.add('active', 'text-blue-700')
+    } else {
+        repeatBtn.classList.remove('active', 'text-blue-700')
+        songsEls[activeSongIndex].loop = false
+    }
 })
 
 
@@ -156,6 +165,16 @@ function getPlaylist() {
         songEl.addEventListener('timeupdate', () => {
             const { currentTime } = songEl 
             updateProgress(currentTime)
+        })
+
+        // autoplay next song
+        songEl.addEventListener('ended', function() {
+            activeSongIndex = (activeSongIndex + 1)
+            setSongDetails(songs[activeSongIndex])
+            songsEls[activeSongIndex].play()
+
+            document.querySelector('#playlist button.font-bold').classList.remove('font-bold')
+            playlistEl.querySelectorAll('button')[activeSongIndex].classList.add('font-bold')     
         })
 
         // change song on song title click
