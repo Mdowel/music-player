@@ -4,7 +4,7 @@ const songs = [
     artist: "Kevin MacLeod",
     thumbnail:
       "https://images.unsplash.com/photo-1500534623283-312aade485b7?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    url: "https://github.com/Mdowel/music-player-audio-files/raw/refs/heads/main/Adding%20the%20Sun.mp3",
+    url: "https://github.com/Mdowel/music-player/releases/download/v1.0/Adding.the.Sun.mp3",
   },
 
   {
@@ -12,7 +12,7 @@ const songs = [
     artist: "Kevin MacLeod",
     thumbnail:
       "https://images.unsplash.com/photo-1446813768824-b3730a9d5840?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    url: "https://github.com/Mdowel/music-player-audio-files/raw/refs/heads/main/Dream%20Catcher.mp3",
+    url: "https://github.com/Mdowel/music-player/releases/download/v1.0/Dream.Catcher.mp3",
   },
 
   {
@@ -20,7 +20,7 @@ const songs = [
     artist: "Kevin MacLeod",
     thumbnail:
       "https://images.unsplash.com/photo-1525396723185-6410140f6f98?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    url: "https://github.com/Mdowel/music-player-audio-files/raw/refs/heads/main/The%20Ice%20Giants.mp3",
+    url: "https://github.com/Mdowel/music-player/releases/download/v1.0/The.Ice.Giants.mp3",
   },
 
   {
@@ -28,7 +28,7 @@ const songs = [
     artist: "Kevin MacLeod",
     thumbnail:
       "https://images.unsplash.com/photo-1526722190017-4f91f105e2b2?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    url: "https://github.com/Mdowel/music-player-audio-files/raw/refs/heads/main/Glitter%20Blast.mp3",
+    url: "https://github.com/Mdowel/music-player/releases/download/v1.0/Glitter.Blast.mp3",
   },
 
   {
@@ -36,7 +36,7 @@ const songs = [
     artist: "Kevin MacLeod",
     thumbnail:
       "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    url: "https://github.com/Mdowel/music-player-audio-files/raw/refs/heads/main/Magistar.mp3",
+    url: "https://github.com/Mdowel/music-player/releases/download/v1.0/Magistar.mp3",
   },
 
   {
@@ -44,7 +44,7 @@ const songs = [
     artist: "Kevin MacLeod",
     thumbnail:
       "https://images.unsplash.com/photo-1706713417278-f56e1fd147e4?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    url: "https://github.com/Mdowel/music-player-audio-files/raw/refs/heads/main/Midnight%20Tale.mp3",
+    url: "https://github.com/Mdowel/music-player/releases/download/v1.0/Midnight.Tale.mp3",
   },
 ];
 
